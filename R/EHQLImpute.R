@@ -249,26 +249,26 @@ EHQLImpute<- function(YR,
 
       C.post[, , ns - burn ] = C
       alpha.post[,ns-burn] = alpha/sqrt(diag(S))
+      Y_copy = YR[,1:ncolY]
+      # compute the margin adjusmtent
+      x_ma =apply(Y[,1:ncolY],2, function(x) sort(unique(x)))
+      #cut points
+      cuts_MA<- lapply(1:ncolY, function(x)
+        sapply(x_ma[[x]], function(y)
+          max(Z[which(Y[,x] == y),x])))
 
+      MA_j<- sapply(1:ncolY,function(j) pnorm(cuts_MA[[j]],sd = sqrt(S[j,j])))
+      for(j in 1:ncolY){
+        MAs[[j]] = rbind(MAs[[j]], MA_j[[j]])# save margin adjustment samples
+      }
+
+
+      lbs = sapply(1:ncolY, function(j) aux_infos[[j]][1])
+      ubs = sapply(1:ncolY, function(j) aux_infos[[j]][length(aux_infos[[j]])])
       if((ns-burn)%%imp_every == 0){ # imputation
 
 
-        Y_copy = YR[,1:ncolY]
-        # compute the margin adjusmtent
-        x_ma =apply(Y[,1:ncolY],2, function(x) sort(unique(x)))
-        #cut points
-        cuts_MA<- lapply(1:ncolY, function(x)
-          sapply(x_ma[[x]], function(y)
-            max(Z[which(Y[,x] == y),x])))
 
-        MA_j<- sapply(1:ncolY,function(j) pnorm(cuts_MA[[j]],sd = sqrt(S[j,j])))
-        for(j in 1:ncolY){
-          MAs[[j]] = rbind(MAs[[j]], MA_j[[j]])# save margin adjustment samples
-        }
-
-
-        lbs = sapply(1:ncolY, function(j) aux_infos[[j]][1])
-        ubs = sapply(1:ncolY, function(j) aux_infos[[j]][length(aux_infos[[j]])])
         Fn_inv = sapply(1:ncolY, function(j)
           splinefun(c(MA_j[[j]]),c(x_ma[[j]]), method = "monoH.FC"))
 
