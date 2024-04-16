@@ -161,9 +161,9 @@ EHQLImpute<- function(YR,
 
   # intercept
   alpha = rep(0,p)
-  C.post= array(dim = c(p, p, floor(nsamp/odens)- burn))
+  C.post= array(dim = c(p, p, floor(nsamp)- burn))
 
-  alpha.post<- array(dim = c(p, floor(nsamp/odens)- burn))
+  alpha.post<- array(dim = c(p, floor(nsamp)- burn))
   have_aux = rep(T,ncolY)
 
   #for eql
