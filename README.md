@@ -53,7 +53,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.473 0.500 0.498 0.507 0.494
+#> [1] 0.534 0.505 0.510 0.522 0.481
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -90,29 +90,29 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j               Y_j              Y_j        
-#>  Min.   :0.0135   Min.   :-0.9394   Min.   :0.0001   Min.   :0.0002  
-#>  1st Qu.:0.5351   1st Qu.: 0.9185   1st Qu.:0.1281   1st Qu.:0.2311  
-#>  Median :1.1101   Median : 1.5254   Median :0.2800   Median :0.6188  
-#>  Mean   :1.4057   Mean   : 1.6877   Mean   :0.3247   Mean   :0.9463  
-#>  3rd Qu.:2.0236   3rd Qu.: 2.3426   3rd Qu.:0.4827   3rd Qu.:1.2290  
-#>  Max.   :6.8687   Max.   : 9.5645   Max.   :0.9457   Max.   :6.6074  
-#>  NA's   :473      NA's   :500       NA's   :498      NA's   :507     
-#>       Y_j               V6              V7            V8              V9       
-#>  Min.   :-2.393   Min.   :0.000   Min.   :0.0   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.523   1st Qu.:0.000   1st Qu.:0.0   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 2.445   Median :0.000   Median :0.5   Median :0.000   Median :1.000  
-#>  Mean   : 2.712   Mean   :0.473   Mean   :0.5   Mean   :0.498   Mean   :0.507  
-#>  3rd Qu.: 3.620   3rd Qu.:1.000   3rd Qu.:1.0   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   :12.463   Max.   :1.000   Max.   :1.0   Max.   :1.000   Max.   :1.000  
-#>  NA's   :494                                                                   
-#>       V10       
-#>  Min.   :0.000  
-#>  1st Qu.:0.000  
-#>  Median :0.000  
-#>  Mean   :0.494  
-#>  3rd Qu.:1.000  
-#>  Max.   :1.000  
+#>       Y_j              Y_j              Y_j              Y_j        
+#>  Min.   :0.0026   Min.   :-2.274   Min.   :0.0000   Min.   :0.0019  
+#>  1st Qu.:0.1602   1st Qu.: 1.080   1st Qu.:0.0985   1st Qu.:0.4358  
+#>  Median :0.4039   Median : 1.825   Median :0.2553   Median :0.9375  
+#>  Mean   :0.6729   Mean   : 2.030   Mean   :0.3014   Mean   :1.2304  
+#>  3rd Qu.:0.9306   3rd Qu.: 2.821   3rd Qu.:0.4604   3rd Qu.:1.7469  
+#>  Max.   :4.7312   Max.   :11.584   Max.   :0.9564   Max.   :6.4009  
+#>  NA's   :534      NA's   :505      NA's   :510      NA's   :522     
+#>       Y_j               V6              V7              V8      
+#>  Min.   :-1.906   Min.   :0.000   Min.   :0.000   Min.   :0.00  
+#>  1st Qu.: 1.293   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.00  
+#>  Median : 2.159   Median :1.000   Median :1.000   Median :1.00  
+#>  Mean   : 2.362   Mean   :0.534   Mean   :0.505   Mean   :0.51  
+#>  3rd Qu.: 3.065   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.00  
+#>  Max.   :11.950   Max.   :1.000   Max.   :1.000   Max.   :1.00  
+#>  NA's   :481                                                    
+#>        V9             V10       
+#>  Min.   :0.000   Min.   :0.000  
+#>  1st Qu.:0.000   1st Qu.:0.000  
+#>  Median :1.000   Median :0.000  
+#>  Mean   :0.522   Mean   :0.481  
+#>  3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :1.000   Max.   :1.000  
 #> 
 ```
 
@@ -186,23 +186,23 @@ imps<- EHQLImpute(YR,
 Now, we can look at the imputations
 
 ``` r
-summary(imps$YImpute[[20]])
-#>       Y_j                Y_j              Y_j                Y_j          
-#>  Min.   :0.000921   Min.   :-0.105   Min.   :0.002382   Min.   :0.002214  
-#>  1st Qu.:0.301419   1st Qu.: 1.521   1st Qu.:0.133752   1st Qu.:0.331887  
-#>  Median :0.769738   Median : 2.149   Median :0.272867   Median :0.697063  
-#>  Mean   :1.068321   Mean   : 2.475   Mean   :0.329481   Mean   :1.019848  
-#>  3rd Qu.:1.553196   3rd Qu.: 3.122   3rd Qu.:0.502212   3rd Qu.:1.479845  
-#>  Max.   :5.276930   Max.   :14.336   Max.   :0.973536   Max.   :5.817298  
-#>       Y_j        
-#>  Min.   :-0.729  
-#>  1st Qu.: 1.438  
-#>  Median : 2.150  
-#>  Mean   : 2.466  
-#>  3rd Qu.: 3.194  
-#>  Max.   :15.031
+summary(imps$YImpute[[2]])
+#>       Y_j                Y_j                Y_j                 Y_j          
+#>  Min.   :0.002831   Min.   :-0.01022   Min.   :-0.000099   Min.   :0.002214  
+#>  1st Qu.:0.295708   1st Qu.: 1.43534   1st Qu.: 0.132760   1st Qu.:0.299862  
+#>  Median :0.738075   Median : 2.16926   Median : 0.286881   Median :0.655321  
+#>  Mean   :1.082782   Mean   : 2.43558   Mean   : 0.328149   Mean   :1.065591  
+#>  3rd Qu.:1.559143   3rd Qu.: 3.01529   3rd Qu.: 0.486232   3rd Qu.:1.576546  
+#>  Max.   :5.177720   Max.   :14.33562   Max.   : 0.973536   Max.   :7.032586  
+#>       Y_j         
+#>  Min.   :-0.5853  
+#>  1st Qu.: 1.2763  
+#>  Median : 2.1431  
+#>  Mean   : 2.4003  
+#>  3rd Qu.: 3.2401  
+#>  Max.   :25.7541
 
-plot(density(imps$YImpute[[20]][,3], bw = .1),col = "blue", lwd = 3, main = "Imputed vs. Truth vs. Observed")
+plot(density(imps$YImpute[[2]][,3], bw = .1),col = "blue", lwd = 3, main = "Imputed vs. Truth vs. Observed")
 lines(density(rbeta(1000,1,2),bw = .1),lwd = 3, lty = 2)
 lines(density(Y_raw[,3],na.rm = T, bw = .1), lwd = 3, col = "gray")
 legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "gray"), lwd = 3)
