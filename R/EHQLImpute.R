@@ -34,7 +34,7 @@ EHQLImpute<- function(YR,
   aux_bins = vector('list',ncolY) #get aux bin membership
   Completed_Data = vector('list',nImps)# store completed data
 
-  imp_every = floor(nsamp/nImps)
+  imp_every = floor((nsamp-burn)/nImps)
 
   ind =1
   Y_binned = NULL
