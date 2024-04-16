@@ -241,7 +241,7 @@ EHQLImpute<- function(YR,
       print(cat("Sampling is:", round(100 * ns/nsamp), "percent done"))
 
     }
-    if (ns > burn ) {
+    if (ns >= burn ) {
       S<-tcrossprod(Lambda) + diag(Sigma.diag)
 
 
