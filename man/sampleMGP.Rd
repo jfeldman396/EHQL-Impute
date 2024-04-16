@@ -6,6 +6,18 @@
 \usage{
 sampleMGP(theta.jh, delta.h, a1 = 3, a2 = 5)
 }
+\arguments{
+\item{theta.jh}{sss}
+
+\item{delta.h}{sss}
+
+\item{a1}{sss}
+
+\item{a2}{sss}
+}
+\value{
+ss
+}
 \description{
 Title
 }

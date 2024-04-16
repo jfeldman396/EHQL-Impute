@@ -1,6 +1,16 @@
+
 #' Title
 #'
+#' @param theta.jh sss
+#' @param delta.h sss
+#' @param a1 sss
+#' @param a2 sss
+#'
+#'
+#' @return ss
 #' @export
+#'
+
 sampleMGP<-function(theta.jh, delta.h, a1 = 3, a2 = 5){
   # Store the dimensions locally
   p = nrow(theta.jh); K = ncol(theta.jh)

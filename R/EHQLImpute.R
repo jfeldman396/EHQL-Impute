@@ -203,7 +203,7 @@ EHQLImpute<- function(YR,
 
     # Step 4: sample phi.jh
     phi.jh = matrix(rgamma(n = p*k.star, shape = (nu + 1)/2,
-                           rate = (nu + Lambda^2*matrix(rep(tau.h, each = p), nr = p))/2), nr = p) #for(h in 1:k.star){for(j in 1:p) phi.jh[j,h] = rgamma(n = 1, shape = (nu + 1)/2, rate = (nu + Lambda[j,h]^2*tau.h[h])/2)
+                           rate = (nu + Lambda^2*matrix(rep(tau.h, each = p), nrow = p))/2), nrow = p) #for(h in 1:k.star){for(j in 1:p) phi.jh[j,h] = rgamma(n = 1, shape = (nu + 1)/2, rate = (nu + Lambda[j,h]^2*tau.h[h])/2)
 
     # Step 5: sample tau.h via delta.h
     delta.h = sampleMGP(theta.jh = sqrt(phi.jh)*Lambda, delta.h = delta.h, a1 = a1, a2 = a2)
@@ -236,7 +236,7 @@ EHQLImpute<- function(YR,
     if(any(is.na(Z))){
       break
     }
-    if( (ns%%100) == 0) {
+    if( (ns%%1000) == 0) {
 
       print(cat(round(100 * ns/nsamp), "percent done"))
 
@@ -299,7 +299,7 @@ EHQLImpute<- function(YR,
     C.post = C.post,
     alpha.post = alpha.post,
     MAs = MAs,
-    x_ma,
+    x_ma = apply(Y[,1:ncolY],2, function(x) sort(unique(x))),
     YImpute = Completed_Data
   ))
 }

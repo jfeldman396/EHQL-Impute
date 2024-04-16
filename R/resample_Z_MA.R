@@ -1,6 +1,26 @@
+
 #' Title
 #'
+#' @param j s
+#' @param Z s
+#' @param Y s
+#' @param R s
+#' @param Rlevels s
+#' @param alpha s
+#' @param Lambda s
+#' @param eta s
+#' @param Sigma.diag s
+#' @param plugin.marginal s
+#' @param is_cat_bin s
+#' @param have_aux s
+#' @param aux_quantiles s
+#' @param aux_bins s
+#' @param Z_past s
+#'
+#' @import truncnorm
+#' @return s
 #' @export
+
 resample_Z_MA<-function(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
                         plugin.marginal,is_cat_bin,have_aux,aux_quantiles,aux_bins,
                         Z_past){
