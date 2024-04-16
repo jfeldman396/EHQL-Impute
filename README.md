@@ -53,7 +53,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.534 0.505 0.510 0.522 0.481
+#> [1] 0.503 0.509 0.523 0.495 0.488
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -90,27 +90,27 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0026   Min.   :-2.274   Min.   :0.0000   Min.   :0.0019  
-#>  1st Qu.:0.1602   1st Qu.: 1.080   1st Qu.:0.0985   1st Qu.:0.4358  
-#>  Median :0.4039   Median : 1.825   Median :0.2553   Median :0.9375  
-#>  Mean   :0.6729   Mean   : 2.030   Mean   :0.3014   Mean   :1.2304  
-#>  3rd Qu.:0.9306   3rd Qu.: 2.821   3rd Qu.:0.4604   3rd Qu.:1.7469  
-#>  Max.   :4.7312   Max.   :11.584   Max.   :0.9564   Max.   :6.4009  
-#>  NA's   :534      NA's   :505      NA's   :510      NA's   :522     
-#>       Y_j               V6              V7              V8      
-#>  Min.   :-1.906   Min.   :0.000   Min.   :0.000   Min.   :0.00  
-#>  1st Qu.: 1.293   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.00  
-#>  Median : 2.159   Median :1.000   Median :1.000   Median :1.00  
-#>  Mean   : 2.362   Mean   :0.534   Mean   :0.505   Mean   :0.51  
-#>  3rd Qu.: 3.065   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.00  
-#>  Max.   :11.950   Max.   :1.000   Max.   :1.000   Max.   :1.00  
-#>  NA's   :481                                                    
+#>       Y_j              Y_j               Y_j              Y_j        
+#>  Min.   :0.0002   Min.   :-0.7532   Min.   :0.0005   Min.   :0.0265  
+#>  1st Qu.:0.1998   1st Qu.: 1.9621   1st Qu.:0.1048   1st Qu.:0.5304  
+#>  Median :0.5306   Median : 2.7801   Median :0.2427   Median :1.0807  
+#>  Mean   :0.7664   Mean   : 3.1026   Mean   :0.2956   Mean   :1.4195  
+#>  3rd Qu.:1.0517   3rd Qu.: 3.7800   3rd Qu.:0.4413   3rd Qu.:2.0276  
+#>  Max.   :4.7954   Max.   :14.5406   Max.   :0.9442   Max.   :9.1958  
+#>  NA's   :503      NA's   :509       NA's   :523      NA's   :495     
+#>       Y_j               V6              V7              V8       
+#>  Min.   :-1.350   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.032   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 1.748   Median :1.000   Median :1.000   Median :1.000  
+#>  Mean   : 1.896   Mean   :0.503   Mean   :0.509   Mean   :0.523  
+#>  3rd Qu.: 2.433   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   : 7.948   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :488                                                     
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :1.000   Median :0.000  
-#>  Mean   :0.522   Mean   :0.481  
+#>  Median :0.000   Median :0.000  
+#>  Mean   :0.495   Mean   :0.488  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -129,7 +129,7 @@ information specified by the user:
   non-ignorable. In this example we have $\texttt{ncolR} = 5$
 - aux_quantiles: auxiliary quantiles assumed known for each study
   variable. This is a list of length $\texttt{ncolY}$, where the
-  aux_quantiles\[\[j\]\] = $(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$,
+  auxquantiles\[\[j\]\] = $(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$,
   i.e. there are $q_{j}+2$ auxiliary quantiles assumed known for each
   variable. If $\texttt{aux_quantiles[[j]]}$ is null, empirical deciles
   will be used. Note the quantiles for each variable do not need to be
@@ -208,8 +208,8 @@ lines(density(Y_raw[,3],na.rm = T, bw = .1), lwd = 3, col = "gray")
 legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "gray"), lwd = 3)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" /> \##
-Analyze margin Adjustment
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+\##Analyze margin Adjustment
 
 ``` r
 # 
