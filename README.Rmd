@@ -116,7 +116,7 @@ Now we'll estimate the EHQL copula. To do so requires several pieces of informat
 * $\textt{burn}$: Burn-in iterations for the MCMC
 
 
-```{r,cache = T}
+```{r, cache = T}
 YR = Y_obs
 ncolY = 5; ncolR = 5
 MA = rep(T,5)
@@ -150,7 +150,7 @@ imps<- EHQLImpute(YR,
 ## Analyze results
 Now, we can look at the imputations
 
-```{r, cache = TRUE}
+```{r}
 summary(imps$YImpute[[2]])
 
 plot(density(imps$YImpute[[2]][,3], bw = .1),col = "blue", lwd = 3, main = "Imputed vs. Truth vs. Observed")
@@ -158,7 +158,7 @@ lines(density(rbeta(1000,1,2),bw = .1),lwd = 3, lty = 2)
 lines(density(Y_raw[,3],na.rm = T, bw = .1), lwd = 3, col = "gray")
 legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "gray"), lwd = 3)
 ```
-##Analyze margin Adjustment
+### Analyze margin Adjustment
 
 ```{r}
 # 

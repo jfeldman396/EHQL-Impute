@@ -53,7 +53,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.503 0.509 0.523 0.495 0.488
+#> [1] 0.498 0.487 0.490 0.499 0.514
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -90,27 +90,27 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j               Y_j              Y_j        
-#>  Min.   :0.0002   Min.   :-0.7532   Min.   :0.0005   Min.   :0.0265  
-#>  1st Qu.:0.1998   1st Qu.: 1.9621   1st Qu.:0.1048   1st Qu.:0.5304  
-#>  Median :0.5306   Median : 2.7801   Median :0.2427   Median :1.0807  
-#>  Mean   :0.7664   Mean   : 3.1026   Mean   :0.2956   Mean   :1.4195  
-#>  3rd Qu.:1.0517   3rd Qu.: 3.7800   3rd Qu.:0.4413   3rd Qu.:2.0276  
-#>  Max.   :4.7954   Max.   :14.5406   Max.   :0.9442   Max.   :9.1958  
-#>  NA's   :503      NA's   :509       NA's   :523      NA's   :495     
-#>       Y_j               V6              V7              V8       
-#>  Min.   :-1.350   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.032   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 1.748   Median :1.000   Median :1.000   Median :1.000  
-#>  Mean   : 1.896   Mean   :0.503   Mean   :0.509   Mean   :0.523  
-#>  3rd Qu.: 2.433   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   : 7.948   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :488                                                     
+#>       Y_j              Y_j              Y_j              Y_j        
+#>  Min.   :0.0051   Min.   :-1.363   Min.   :0.0002   Min.   :0.0006  
+#>  1st Qu.:0.5128   1st Qu.: 1.216   1st Qu.:0.0902   1st Qu.:0.2171  
+#>  Median :1.0726   Median : 1.844   Median :0.2125   Median :0.5486  
+#>  Mean   :1.3316   Mean   : 2.093   Mean   :0.2752   Mean   :0.7892  
+#>  3rd Qu.:1.8427   3rd Qu.: 2.747   3rd Qu.:0.4256   3rd Qu.:1.0615  
+#>  Max.   :7.7132   Max.   :11.221   Max.   :0.9487   Max.   :5.9829  
+#>  NA's   :498      NA's   :487      NA's   :490      NA's   :499     
+#>       Y_j                V6              V7              V8      
+#>  Min.   :-0.3248   Min.   :0.000   Min.   :0.000   Min.   :0.00  
+#>  1st Qu.: 1.6357   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.00  
+#>  Median : 2.4425   Median :0.000   Median :0.000   Median :0.00  
+#>  Mean   : 2.6864   Mean   :0.498   Mean   :0.487   Mean   :0.49  
+#>  3rd Qu.: 3.4200   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.00  
+#>  Max.   :13.1750   Max.   :1.000   Max.   :1.000   Max.   :1.00  
+#>  NA's   :514                                                     
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :0.000   Median :0.000  
-#>  Mean   :0.495   Mean   :0.488  
+#>  Median :0.000   Median :1.000  
+#>  Mean   :0.499   Mean   :0.514  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -208,8 +208,8 @@ lines(density(Y_raw[,3],na.rm = T, bw = .1), lwd = 3, col = "gray")
 legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "gray"), lwd = 3)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
-\##Analyze margin Adjustment
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" /> \###
+Analyze margin Adjustment
 
 ``` r
 # 
