@@ -1,6 +1,8 @@
+#' Title
+#'
+#' @export
 resample_Z_MA<-function(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
                         plugin.marginal,is_cat_bin,have_aux,aux_quantiles,aux_bins,
-                        nobs = n,
                         Z_past){
 
 
@@ -10,6 +12,7 @@ resample_Z_MA<-function(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
   Zj = Z[,j]
   Z_pastj = Z_past[,j]
   Yj = Y[,j]
+  nobs = nrow(Y)
   bounds = NULL
   if(is_cat_bin[j] == 0){ #if j is numeric
     if(have_aux[j]){
@@ -60,7 +63,7 @@ resample_Z_MA<-function(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
     else{# if there's no auxiliary information on Y_j, just do rank likelihood sampling
       for(r in 1:Rlevels[j]){
 
-        ir <- (1:n)[R[, j] == r & !is.na(R[, j])]
+        ir <- (1:nobs)[R[, j] == r & !is.na(R[, j])]
         lb <- suppressWarnings(max(Zj[R[, j] == r -
                                         1], na.rm = TRUE))
         ub <- suppressWarnings(min(Zj[R[, j] == r +

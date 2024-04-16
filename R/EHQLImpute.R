@@ -90,7 +90,8 @@ EHQLImpute<- function(YR,
 
   #create binned data
   Y <- as.matrix(cbind(Y_binned,YR[,((ncolY+1):ncol(YR))]))
-  n = nobs = dim(Y)[1]
+  nobs = dim(Y)[1]
+  n = dim(Y)[1]
   p <- dim(Y)[2]
   plugin.marginal = rep(F,p)
 
@@ -224,7 +225,6 @@ EHQLImpute<- function(YR,
 
         Zj = resample_Z_MA(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
                            plugin.marginal,is_cat_bin,have_aux,aux_quantiles,aux_bins,
-                           nobs = n,
                            Z_past)
         Z[,j] = Zj
 
@@ -240,7 +240,7 @@ EHQLImpute<- function(YR,
       print(cat(round(100 * ns/nsamp), "percent done"))
 
     }
-    if (ns%%odens == 0 &ns > burn ) {
+    if (ns== 0 &ns > burn ) {
       S<-tcrossprod(Lambda) + diag(Sigma.diag)
 
 
