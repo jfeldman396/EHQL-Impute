@@ -238,7 +238,7 @@ EHQLImpute<- function(YR,
     }
     if( (ns%%1000) == 0) {
 
-      print(cat(round(100 * ns/nsamp), "percent done"))
+      print(cat(,"Sampling is:", round(100 * ns/nsamp), "percent done"))
 
     }
     if (ns== 0 &ns > burn ) {
@@ -246,7 +246,7 @@ EHQLImpute<- function(YR,
 
 
       C <- S/(sqrt(diag(S)) %*% t(sqrt(diag(S))))
-
+      print(C)
       C.post[, , ns - burn ] = C
       alpha.post[,ns-burn] = alpha/sqrt(diag(S))
 
@@ -277,7 +277,7 @@ EHQLImpute<- function(YR,
 
           Y_mis<- Fn_inv[[j]](pnorm(Z[na_inds,j], sd = sqrt(S[j,j])))
 
-
+          print(summary(Y_mis))
 
           Y_copy[na_inds,j] = Y_mis
 
@@ -285,7 +285,7 @@ EHQLImpute<- function(YR,
 
 
         }
-
+        print(summary(Y_copy))
         Completed_Data[[m]] = Y_copy
         m = m+1
 
