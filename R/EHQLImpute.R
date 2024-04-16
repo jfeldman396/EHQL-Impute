@@ -13,7 +13,7 @@
 #' @param nImps Number of completed data sets to produce
 #' @param nsamp Number of iterations for the MCMC
 #' @param burn Number of Burn-in samples for the MCMC
-#'
+#' @import truncnorm
 #' @return C.post,alpha.post, and MAs, which are the nsamp-burn posterior samples of the copula correlation, latent intercept vector, and margin adjustment (list or length ncolY, MAs[[j]] computes the margin adjustment at x_ma[[j]]), respectively. In addition, YImpute is a list of length nImps containing imputed data sets.
 #' @export
 
