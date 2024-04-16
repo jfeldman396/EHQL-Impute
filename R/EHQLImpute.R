@@ -111,7 +111,7 @@ EHQLImpute<- function(YR,
   Z = NULL
   nobs = n
   for(j in 1:p){
-    if(j <= dim){
+    if(j <= ncolY){
       Z = cbind(Z, U[,j])
     }else{
       Zj = array(0,n)

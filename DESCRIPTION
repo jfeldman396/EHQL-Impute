@@ -1,11 +1,10 @@
 Package: EHQLImpute
 Type: Package
-Title: What the Package Does (Title Case)
+Title: EHQLImpute
 Version: 0.1.0
-Author: Who wrote it
+Author: Joseph Feldman
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Estimates the EHQL Gaussian copula on nonignorable missing data, and returns completed data sets for downstream analysis. The user specifies auxiliary marginal quantiles for each study variable, which are leveraged for estimation of the copula correlation and marginal distribution functions, as well as for imputation. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
