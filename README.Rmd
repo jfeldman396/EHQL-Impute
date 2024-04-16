@@ -105,12 +105,12 @@ We will start by simulating data with non-ignorable missingness from a Gaussian 
 
 Now we'll estimate the EHQL copula. To do so requires several pieces of information specified by the user:
 
-* $$\texttt{YR}$$: This is the combined observed study variables and missingness indicators. It is given by $\texttt{Yobs}$ above.
-* $$\texttt{ncolY}$$: The number of study variables. In this example we have $\texttt{ncolY} = 5$:
-* $$\texttt{ncolR}$$: The number of study variables modeled as non-ignorable.  In this example we have $\texttt{ncolR} = 5$
-* aux_quantiles: auxiliary quantiles assumed known for each study variable. This is a list of length $\texttt{ncolY}$, where the aux_quantiles[[j]] =  $$(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$$, i.e. there are $$q_{j}+2$$ auxiliary quantiles assumed known for each variable. If $$\texttt{aux_quantiles[[j]]}$$ is null, empirical deciles will be used. Note the quantiles for each variable do not need to be unique.
-* aux_infos: This is a list of length $$\texttt{ncolY}$$ where aux_infos[[j]] =  $$(F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},...,F_{j}^{-1}(1)\}$$
-* $$\texttt{MA}$$: vector of length ncolY indicating whether or not to compute the margin adjustment. This is strongly recommended for all levels of auxiliary information, and especially when auxiliary information is extremely sparse, as it propagates uncertainty about each $F_{j}$ which is beneficial for prediction and imputation
+* $\texttt{YR}$: This is the combined observed study variables and missingness indicators. It is given by $\texttt{Yobs}$ above.
+* $\texttt{ncolY}$: The number of study variables. In this example we have $\texttt{ncolY} = 5$:
+* $\texttt{ncolR}$: The number of study variables modeled as non-ignorable.  In this example we have $\texttt{ncolR} = 5$
+* aux_quantiles: auxiliary quantiles assumed known for each study variable. This is a list of length $\texttt{ncolY}$, where the aux_quantiles[[j]] =  $(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$, i.e. there are $q_{j}+2$ auxiliary quantiles assumed known for each variable. If $\texttt{aux_quantiles[[j]]}$ is null, empirical deciles will be used. Note the quantiles for each variable do not need to be unique.
+* aux_infos: This is a list of length $\texttt{ncolY}$ where aux_infos[[j]] =  $(F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},...,F_{j}^{-1}(1)\}$
+* $\texttt{MA}$: vector of length ncolY indicating whether or not to compute the margin adjustment. This is strongly recommended for all levels of auxiliary information, and especially when auxiliary information is extremely sparse, as it propagates uncertainty about each $F_{j}$ which is beneficial for prediction and imputation
 * $\texttt{nImps}$: The number of completed data sets to create
 * $\texttt{nsamp}$: Number of iterations for the MCMC
 * $\textt{burn}$: Burn-in iterations for the MCMC
@@ -169,21 +169,21 @@ legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "g
     if(j == 2){
     plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[2]<=y[2]))),
-         main =paste("Margin Adjustment Posterior Samples"),
+         main =paste("Margin Adjustment Posterior Samples for Y_2"),
          ylim = c(0,1),
          lwd = 3, 
          cex = 2)
     }else if(j==1){
       plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[1]<=y[1]))),
-         main =paste(""),
+         main =paste("Margin Adjustment Posterior Samples for Y_1"),
          ylim = c(0,1),
          lwd = 3, 
          cex = 2)
     }else{
       plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[3]<=y[3]))),
-         main =paste(""),
+         main =paste("Margin Adjustment Posterior Samples for Y_3"),
          ylim = c(0,1),
          lwd = 3, 
          cex = 2)

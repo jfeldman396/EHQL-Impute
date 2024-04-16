@@ -53,7 +53,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.500 0.493 0.504 0.501 0.490
+#> [1] 0.473 0.500 0.498 0.507 0.494
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -90,29 +90,29 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0049   Min.   :-1.832   Min.   :0.0006   Min.   :0.0003  
-#>  1st Qu.:0.2970   1st Qu.: 1.181   1st Qu.:0.1080   1st Qu.:0.2655  
-#>  Median :0.6921   Median : 1.974   Median :0.2324   Median :0.6585  
-#>  Mean   :1.0209   Mean   : 2.185   Mean   :0.2797   Mean   :0.9427  
-#>  3rd Qu.:1.4553   3rd Qu.: 2.940   3rd Qu.:0.4061   3rd Qu.:1.2528  
-#>  Max.   :7.8066   Max.   : 8.637   Max.   :0.9299   Max.   :7.1838  
-#>  NA's   :500      NA's   :493      NA's   :504      NA's   :501     
-#>       Y_j                V6            V7              V8       
-#>  Min.   :-1.8681   Min.   :0.0   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 0.9891   1st Qu.:0.0   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 1.6290   Median :0.5   Median :0.000   Median :1.000  
-#>  Mean   : 1.7518   Mean   :0.5   Mean   :0.493   Mean   :0.504  
-#>  3rd Qu.: 2.4742   3rd Qu.:1.0   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   : 6.5849   Max.   :1.0   Max.   :1.000   Max.   :1.000  
-#>  NA's   :490                                                    
-#>        V9             V10      
-#>  Min.   :0.000   Min.   :0.00  
-#>  1st Qu.:0.000   1st Qu.:0.00  
-#>  Median :1.000   Median :0.00  
-#>  Mean   :0.501   Mean   :0.49  
-#>  3rd Qu.:1.000   3rd Qu.:1.00  
-#>  Max.   :1.000   Max.   :1.00  
+#>       Y_j              Y_j               Y_j              Y_j        
+#>  Min.   :0.0135   Min.   :-0.9394   Min.   :0.0001   Min.   :0.0002  
+#>  1st Qu.:0.5351   1st Qu.: 0.9185   1st Qu.:0.1281   1st Qu.:0.2311  
+#>  Median :1.1101   Median : 1.5254   Median :0.2800   Median :0.6188  
+#>  Mean   :1.4057   Mean   : 1.6877   Mean   :0.3247   Mean   :0.9463  
+#>  3rd Qu.:2.0236   3rd Qu.: 2.3426   3rd Qu.:0.4827   3rd Qu.:1.2290  
+#>  Max.   :6.8687   Max.   : 9.5645   Max.   :0.9457   Max.   :6.6074  
+#>  NA's   :473      NA's   :500       NA's   :498      NA's   :507     
+#>       Y_j               V6              V7            V8              V9       
+#>  Min.   :-2.393   Min.   :0.000   Min.   :0.0   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.523   1st Qu.:0.000   1st Qu.:0.0   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 2.445   Median :0.000   Median :0.5   Median :0.000   Median :1.000  
+#>  Mean   : 2.712   Mean   :0.473   Mean   :0.5   Mean   :0.498   Mean   :0.507  
+#>  3rd Qu.: 3.620   3rd Qu.:1.000   3rd Qu.:1.0   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :12.463   Max.   :1.000   Max.   :1.0   Max.   :1.000   Max.   :1.000  
+#>  NA's   :494                                                                   
+#>       V10       
+#>  Min.   :0.000  
+#>  1st Qu.:0.000  
+#>  Median :0.000  
+#>  Mean   :0.494  
+#>  3rd Qu.:1.000  
+#>  Max.   :1.000  
 #> 
 ```
 
@@ -121,23 +121,23 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
 Now we’ll estimate the EHQL copula. To do so requires several pieces of
 information specified by the user:
 
-- $$\texttt{YR}$$: This is the combined observed study variables and
+- $\texttt{YR}$: This is the combined observed study variables and
   missingness indicators. It is given by $\texttt{Yobs}$ above.
-- $$\texttt{ncolY}$$: The number of study variables. In this example we
+- $\texttt{ncolY}$: The number of study variables. In this example we
   have $\texttt{ncolY} = 5$:
-- $$\texttt{ncolR}$$: The number of study variables modeled as
+- $\texttt{ncolR}$: The number of study variables modeled as
   non-ignorable. In this example we have $\texttt{ncolR} = 5$
 - aux_quantiles: auxiliary quantiles assumed known for each study
   variable. This is a list of length $\texttt{ncolY}$, where the
-  aux_quantiles\[\[j\]\] = $$(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$$,
-  i.e. there are $$q_{j}+2$$ auxiliary quantiles assumed known for each
-  variable. If $$\texttt{aux_quantiles[[j]]}$$ is null, empirical
-  deciles will be used. Note the quantiles for each variable do not need
-  to be unique.
-- aux_infos: This is a list of length $$\texttt{ncolY}$$ where
+  aux_quantiles\[\[j\]\] = $(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$,
+  i.e. there are $q_{j}+2$ auxiliary quantiles assumed known for each
+  variable. If $\texttt{aux_quantiles[[j]]}$ is null, empirical deciles
+  will be used. Note the quantiles for each variable do not need to be
+  unique.
+- aux_infos: This is a list of length $\texttt{ncolY}$ where
   aux_infos\[\[j\]\] =
-  $$(F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},...,F_{j}^{-1}(1)\}$$
-- $$\texttt{MA}$$: vector of length ncolY indicating whether or not to
+  $(F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},...,F_{j}^{-1}(1)\}$
+- $\texttt{MA}$: vector of length ncolY indicating whether or not to
   compute the margin adjustment. This is strongly recommended for all
   levels of auxiliary information, and especially when auxiliary
   information is extremely sparse, as it propagates uncertainty about
@@ -220,21 +220,21 @@ Analyze margin Adjustment
     if(j == 2){
     plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[2]<=y[2]))),
-         main =paste("Margin Adjustment Posterior Samples"),
+         main =paste("Margin Adjustment Posterior Samples for Y_2"),
          ylim = c(0,1),
          lwd = 3, 
          cex = 2)
     }else if(j==1){
       plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[1]<=y[1]))),
-         main =paste(""),
+         main =paste("Margin Adjustment Posterior Samples for Y_1"),
          ylim = c(0,1),
          lwd = 3, 
          cex = 2)
     }else{
       plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[3]<=y[3]))),
-         main =paste(""),
+         main =paste("Margin Adjustment Posterior Samples for Y_3"),
          ylim = c(0,1),
          lwd = 3, 
          cex = 2)
