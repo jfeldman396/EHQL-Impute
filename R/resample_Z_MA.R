@@ -82,7 +82,7 @@ resample_Z_MA<-function(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
   }
 
   #impute
-  ir <- (1:n)[is.na(R[, j])]
+  ir <- (1:nobs)[is.na(R[, j])]
   Zj[ir]<- rnorm(length(ir), muj[ir], sdj)
 
   return(Zj)
