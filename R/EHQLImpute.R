@@ -238,7 +238,7 @@ EHQLImpute<- function(YR,
     }
     if( (ns%%1000) == 0) {
 
-      print(cat(,"Sampling is:", round(100 * ns/nsamp), "percent done"))
+      print(cat("Sampling is:", round(100 * ns/nsamp), "percent done"))
 
     }
     if (ns== 0 &ns > burn ) {
