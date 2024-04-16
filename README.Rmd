@@ -158,6 +158,10 @@ lines(density(rbeta(1000,1,2),bw = .1),lwd = 3, lty = 2)
 lines(density(Y_raw[,3],na.rm = T, bw = .1), lwd = 3, col = "gray")
 legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "gray"), lwd = 3)
 ```
+
+We see that the imputations correct bias in the observed data.
+
+
 ### Analyze margin Adjustment
 
 ```{r}
