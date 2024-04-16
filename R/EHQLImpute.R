@@ -256,6 +256,11 @@ EHQLImpute<- function(YR,
         Y_copy = YR[,1:ncolY]
         # compute the margin adjusmtent
         x_ma =apply(Y[,1:ncolY],2, function(x) sort(unique(x)))
+        #cut points
+        cuts_MA<- lapply(1:ncolY, function(x)
+          sapply(x_ma[[x]], function(y)
+            max(Z[which(Y[,x] == y),x])))
+
         MA_j<- sapply(1:ncolY,function(j) pnorm(cuts_MA[[j]],sd = sqrt(S[j,j])))
         for(j in 1:ncolY){
           MAs[[j]] = rbind(MAs[[j]], MA_j[[j]])# save margin adjustment samples
@@ -271,10 +276,6 @@ EHQLImpute<- function(YR,
 
 
 
-          #cut points
-          cuts_MA<- lapply(1:ncolY, function(x)
-            sapply(x_ma[[x]], function(y)
-              max(Z[which(Y[,x] == y),x])))
 
 
           na_inds = which(is.na(YR[,j]))
