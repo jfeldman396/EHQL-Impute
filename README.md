@@ -53,7 +53,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.489 0.498 0.502 0.476 0.475
+#> [1] 0.525 0.519 0.479 0.467 0.524
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -90,27 +90,27 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0028   Min.   : 0.061   Min.   :0.0036   Min.   :0.0022  
-#>  1st Qu.:0.2355   1st Qu.: 1.990   1st Qu.:0.1855   1st Qu.:0.2116  
-#>  Median :0.6177   Median : 2.713   Median :0.3457   Median :0.5157  
-#>  Mean   :0.9445   Mean   : 3.127   Mean   :0.3790   Mean   :0.8034  
-#>  3rd Qu.:1.2912   3rd Qu.: 3.783   3rd Qu.:0.5624   3rd Qu.:1.0959  
-#>  Max.   :5.1777   Max.   :14.336   Max.   :0.9735   Max.   :5.6747  
-#>  NA's   :489      NA's   :498      NA's   :502      NA's   :476     
+#>       Y_j               Y_j              Y_j              Y_j        
+#>  Min.   : 0.0021   Min.   :-1.428   Min.   :0.0003   Min.   :0.0007  
+#>  1st Qu.: 0.4076   1st Qu.: 1.159   1st Qu.:0.0959   1st Qu.:0.2590  
+#>  Median : 0.9033   Median : 1.810   Median :0.2451   Median :0.6428  
+#>  Mean   : 1.2604   Mean   : 2.044   Mean   :0.2909   Mean   :0.9537  
+#>  3rd Qu.: 1.7248   3rd Qu.: 2.630   3rd Qu.:0.4361   3rd Qu.:1.3472  
+#>  Max.   :11.7151   Max.   :12.079   Max.   :0.9075   Max.   :6.4712  
+#>  NA's   :525       NA's   :519      NA's   :479      NA's   :467     
 #>       Y_j                V6              V7              V8       
-#>  Min.   :-0.5853   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.6050   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 2.5175   Median :0.000   Median :0.000   Median :1.000  
-#>  Mean   : 2.7827   Mean   :0.489   Mean   :0.498   Mean   :0.502  
-#>  3rd Qu.: 3.5634   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   :15.0314   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :475                                                      
+#>  Min.   : 0.2557   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.9194   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 2.6357   Median :1.000   Median :1.000   Median :0.000  
+#>  Mean   : 3.0118   Mean   :0.525   Mean   :0.519   Mean   :0.479  
+#>  3rd Qu.: 3.7102   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :11.5522   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :524                                                      
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :0.000   Median :0.000  
-#>  Mean   :0.476   Mean   :0.475  
+#>  Median :0.000   Median :1.000  
+#>  Mean   :0.467   Mean   :0.524  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -127,15 +127,16 @@ information specified by the user:
   have $\texttt{ncolY} = 5$:
 - $\texttt{ncolR}$: The number of study variables modeled as
   non-ignorable. In this example we have $\texttt{ncolR} = 5$
-- $\texttt{aux_quantiles}$: auxiliary quantiles assumed known for each
-  study variable. This is a list of length $\texttt{ncolY}$, where the
-  $\texttt{aux_quantiles[[j]]} = (0,\{\tau_{k_{j}}\}_{k=1}^{q},\dots,1\}$,
+- $aux_quantiles$: auxiliary quantiles assumed known for each study
+  variable. This is a list of length $\texttt{ncolY}$, where the
+  aux_quantiles\[\[j\]\] = $(0,\{\tau_{k_{j}}\}_{k=1}^{q},\dots,1\}$,
   i.e. there are $q_{j}+2$ auxiliary quantiles assumed known for each
   variable. If $\texttt{aux_quantiles[[j]]}$ is null, empirical deciles
   will be used. Note the quantiles for each variable do not need to be
   unique.
-- $\texttt{aux_infos}$: This is a list of length $\texttt{ncolY}$ where
-  $\texttt{aux_infos[[j]]} = (F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},\dots,F_{j}^{-1}(1)\}$
+- aux_infos: This is a list of length $\texttt{ncolY}$ where
+  aux_infos\[\[j\]\] =
+  $(F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},\dots,F_{j}^{-1}(1)\}$
 - $\texttt{MA}$: vector of length ncolY indicating whether or not to
   compute the margin adjustment. This is strongly recommended for all
   levels of auxiliary information, and especially when auxiliary
@@ -211,8 +212,7 @@ legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "g
 Analyze margin Adjustment
 
 ``` r
-par(mfrow = c(2,3),
-    mar = c(4,5,5,1))
+par(mfrow = c(1,3))
 # 
 
 
@@ -221,7 +221,7 @@ par(mfrow = c(2,3),
     if(j == 2){
     plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[2]<=y[2]))),
-         main =paste("Margin Adjustment for Y_2"),
+         main =paste("Margin Adjustment Posterior Samples"),
          cex.main = 3,
          cex.axis = 2,
          cex.lab = 2,
@@ -231,7 +231,7 @@ par(mfrow = c(2,3),
     }else if(j==1){
       plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[1]<=y[1]))),
-         main =paste("Margin Adjustment for Y_2"),
+         main =paste(""),
          cex.main = 3,
          cex.axis = 2,
          cex.lab = 2,
@@ -241,7 +241,7 @@ par(mfrow = c(2,3),
     }else{
       plot(imps$x_ma[[j]],imps$MAs[[j]][1,], type = 'n', xlab = expression(Y[2]),
          ylab = expression(paste(P(Y[3]<=y[3]))),
-         main =paste("Margin Adjustment for Y_2"),
+         main =paste(""),
          cex.main = 3,
          cex.axis = 2,
          cex.lab = 2,
