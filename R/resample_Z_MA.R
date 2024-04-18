@@ -1,17 +1,19 @@
 
-#' Title
+#' Sample latent variables under the EHQL Gaussian copula
+#'
+#' Iterates over the study variables and missingness indicators and samples them according to EHQL ordering constraints (for Y) and probit data augmentation for R
 #'
 #' @param j Variable Index
 #' @param Z Current iteration of the latent data matrix Z
 #' @param Y Observed data matrix
 #' @param R nx2p matrix of ordered quantile bin memberships for Y and levels for R
-#' @param Rlevels Vector of length 2xp with the number of unique auxiliary bins + intermediate quantiles
-#' @param alpha Vector of length 2xp with intercept terms for unordered categorical variables/ components of R
+#' @param Rlevels Vector of length \eqn{2 \times p} with the number of unique auxiliary bins + intermediate quantiles
+#' @param alpha Vector of length \eqn{2\times p} with intercept terms for unordered categorical variables/ components of R
 #' @param Lambda Current iteration of the latent factor loadings
 #' @param eta Current iteration of nxk.star latent factor matrix
 #' @param Sigma.diag Current iteration of diagonal error variances
-#' @param plugin.marginal Vector of length 2xp indicating whether EHQL sampling should take place. By default should be set to F in each component
-#' @param is_cat_bin Vector of length 2xp indicating which components of the data matrix YR correspond to R or unordered categorical variables
+#' @param plugin.marginal Vector of length \eqn{2 \times p} indicating whether EHQL sampling should take place. By default should be set to F in each component
+#' @param is_cat_bin Vector of length \eqn{2\times p} indicating which components of the data matrix YR correspond to R or unordered categorical variables
 #' @param have_aux Vector of length p indicating whether we have auxiliary information on each study variable
 #' @param aux_quantiles List of length p containing the auxiliary quantels available for each study variable j
 #' @param aux_bins List of length p, each containing a vector of length nobs indicating which quantile interval \eqn{y_{ij}^{obs}} belongs to

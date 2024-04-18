@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_Z_MA.R
 \name{resample_Z_MA}
 \alias{resample_Z_MA}
-\title{Title}
+\title{Sample latent variables under the EHQL Gaussian copula}
 \usage{
 resample_Z_MA(
   j,
@@ -31,9 +31,9 @@ resample_Z_MA(
 
 \item{R}{nx2p matrix of ordered quantile bin memberships for Y and levels for R}
 
-\item{Rlevels}{Vector of length 2xp with the number of unique auxiliary bins + intermediate quantiles}
+\item{Rlevels}{Vector of length \eqn{2 \times p} with the number of unique auxiliary bins + intermediate quantiles}
 
-\item{alpha}{Vector of length 2xp with intercept terms for unordered categorical variables/ components of R}
+\item{alpha}{Vector of length \eqn{2\times p} with intercept terms for unordered categorical variables/ components of R}
 
 \item{Lambda}{Current iteration of the latent factor loadings}
 
@@ -41,9 +41,9 @@ resample_Z_MA(
 
 \item{Sigma.diag}{Current iteration of diagonal error variances}
 
-\item{plugin.marginal}{Vector of length 2xp indicating whether EHQL sampling should take place. By default should be set to F in each component}
+\item{plugin.marginal}{Vector of length \eqn{2 \times p} indicating whether EHQL sampling should take place. By default should be set to F in each component}
 
-\item{is_cat_bin}{Vector of length 2xp indicating which components of the data matrix YR correspond to R or unordered categorical variables}
+\item{is_cat_bin}{Vector of length \eqn{2\times p} indicating which components of the data matrix YR correspond to R or unordered categorical variables}
 
 \item{have_aux}{Vector of length p indicating whether we have auxiliary information on each study variable}
 
@@ -57,5 +57,5 @@ resample_Z_MA(
 nx2p posterior sample of Z
 }
 \description{
-Title
+Iterates over the study variables and missingness indicators and samples them according to EHQL ordering constraints (for Y) and probit data augmentation for R
 }

@@ -17,7 +17,7 @@ EHQLImpute(
 )
 }
 \arguments{
-\item{YR}{Observed data matrix. It should be partititioned into the study variables Y followed by missingness indicators R.}
+\item{YR}{Observed data matrix. It should be partitioned into the study variables Y followed by missingness indicators R.}
 
 \item{ncolY}{Number of study variables}
 
