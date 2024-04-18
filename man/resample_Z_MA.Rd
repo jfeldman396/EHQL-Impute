@@ -23,38 +23,38 @@ resample_Z_MA(
 )
 }
 \arguments{
-\item{j}{s}
+\item{j}{Variable Index}
 
-\item{Z}{s}
+\item{Z}{Current iteration of the latent data matrix Z}
 
-\item{Y}{s}
+\item{Y}{Observed data matrix}
 
-\item{R}{s}
+\item{R}{nx2p matrix of ordered quantile bin memberships for Y and levels for R}
 
-\item{Rlevels}{s}
+\item{Rlevels}{Vector of length 2xp with the number of unique auxiliary bins + intermediate quantiles}
 
-\item{alpha}{s}
+\item{alpha}{Vector of length 2xp with intercept terms for unordered categorical variables/ components of R}
 
-\item{Lambda}{s}
+\item{Lambda}{Current iteration of the latent factor loadings}
 
-\item{eta}{s}
+\item{eta}{Current iteration of nxk.star latent factor matrix}
 
-\item{Sigma.diag}{s}
+\item{Sigma.diag}{Current iteration of diagonal error variances}
 
-\item{plugin.marginal}{s}
+\item{plugin.marginal}{Vector of length 2xp indicating whether EHQL sampling should take place. By default should be set to F in each component}
 
-\item{is_cat_bin}{s}
+\item{is_cat_bin}{Vector of length 2xp indicating which components of the data matrix YR correspond to R or unordered categorical variables}
 
-\item{have_aux}{s}
+\item{have_aux}{Vector of length p indicating whether we have auxiliary information on each study variable}
 
-\item{aux_quantiles}{s}
+\item{aux_quantiles}{List of length p containing the auxiliary quantels available for each study variable j}
 
-\item{aux_bins}{s}
+\item{aux_bins}{List of length p, each containing a vector of length nobs indicating which quantile interval \eqn{y_{ij}^{obs}} belongs to}
 
-\item{Z_past}{s}
+\item{Z_past}{past sample of latent Z -- useful for initial stages of MCMC to ensure EHQL orderings are consistent}
 }
 \value{
-s
+nx2p posterior sample of Z
 }
 \description{
 Title

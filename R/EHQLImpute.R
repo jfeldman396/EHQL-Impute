@@ -4,7 +4,7 @@
 #' and inputs an observed data matrix (Y,R) containing the observed and missing study variables (Y) and missingness indicators.
 #' The function estimates the EHQL Gaussian copula, returns posterior samples of the copula parameters, and creates nImps completed data sets
 #'
-#' @param YR Observed data matrix. It should be partititioned into the study variables Y followed by missingness indicators R.
+#' @param YR Observed data matrix. It should be partitioned into the study variables Y followed by missingness indicators R.
 #' @param ncolY Number of study variables
 #' @param ncolR Number of study variables modeled as noningorable
 #' @param aux_quantiles List of length ncolY containing auxiliary quantiles assumed known for each study variable. aux_quantiles[[j]] should be a vector containg 0, intermediate quantiles, and 1.
@@ -219,19 +219,18 @@ EHQLImpute<- function(YR,
     }
 
 
-    if(ns>= 1){
-      Z_past = Z
+    # Step 7: EHQL resampling of Z
+    Z_past = Z
 
-      for(j in 1:p){
+    for(j in 1:p){
 
-        Zj = resample_Z_MA(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
-                           plugin.marginal,is_cat_bin,have_aux,aux_quantiles,aux_bins,
-                           Z_past)
-        Z[,j] = Zj
-
-      }
+      Zj = resample_Z_MA(j,Z,Y,R,Rlevels,alpha, Lambda, eta, Sigma.diag,
+                         plugin.marginal,is_cat_bin,have_aux,aux_quantiles,aux_bins,
+                         Z_past)
+      Z[,j] = Zj
 
     }
+
 
     if(any(is.na(Z))){
       break
