@@ -60,7 +60,7 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.493 0.498 0.495 0.504 0.499
+#> [1] 0.484 0.493 0.505 0.495 0.507
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -98,26 +98,26 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
 #>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0006   Min.   :-1.050   Min.   :0.0010   Min.   :0.0008  
-#>  1st Qu.:0.4094   1st Qu.: 1.477   1st Qu.:0.1542   1st Qu.:0.3018  
-#>  Median :0.9027   Median : 2.307   Median :0.3212   Median :0.6867  
-#>  Mean   :1.2447   Mean   : 2.639   Mean   :0.3647   Mean   :0.9911  
-#>  3rd Qu.:1.5884   3rd Qu.: 3.307   3rd Qu.:0.5455   3rd Qu.:1.3704  
-#>  Max.   :6.9177   Max.   :15.138   Max.   :0.9912   Max.   :7.9058  
-#>  NA's   :493      NA's   :498      NA's   :495      NA's   :504     
+#>  Min.   :0.0016   Min.   :-1.223   Min.   :0.0036   Min.   :0.0001  
+#>  1st Qu.:0.2134   1st Qu.: 1.194   1st Qu.:0.1651   1st Qu.:0.1548  
+#>  Median :0.6951   Median : 2.007   Median :0.3404   Median :0.4226  
+#>  Mean   :0.9715   Mean   : 2.246   Mean   :0.3668   Mean   :0.6427  
+#>  3rd Qu.:1.3755   3rd Qu.: 2.923   3rd Qu.:0.5284   3rd Qu.:0.9509  
+#>  Max.   :5.5647   Max.   :18.334   Max.   :0.9743   Max.   :4.5512  
+#>  NA's   :484      NA's   :493      NA's   :505      NA's   :495     
 #>       Y_j               V6              V7              V8       
-#>  Min.   :-1.422   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.560   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 2.477   Median :0.000   Median :0.000   Median :0.000  
-#>  Mean   : 2.729   Mean   :0.493   Mean   :0.498   Mean   :0.495  
-#>  3rd Qu.: 3.358   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   :16.408   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :499                                                     
+#>  Min.   :-1.465   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.205   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 2.063   Median :0.000   Median :0.000   Median :1.000  
+#>  Mean   : 2.353   Mean   :0.484   Mean   :0.493   Mean   :0.505  
+#>  3rd Qu.: 3.108   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :19.157   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :507                                                     
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :1.000   Median :0.000  
-#>  Mean   :0.504   Mean   :0.499  
+#>  Median :0.000   Median :1.000  
+#>  Mean   :0.495   Mean   :0.507  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -144,7 +144,7 @@ information specified by the user:
   deciles will be used.
 - **aux_infos**: This is a list of length $\texttt{ncolY}$ where
   aux_infos\[\[j\]\]
-  $= [F_{j}^{-1}(0),(F_{j}^{-1}(\tau_{j}^{q}))_{q=2}^{\ell_{j}-1},...,F_{j}^{-1}(1)]$
+  $$=  [F_{j}^{-1}(0),(F_{j}^{-1}(\tau_{j}^{q}))_{q=2}^{\ell_{j}-1},...,F_{j}^{-1}(1)]$$
 - **MA**: vector of length ncolY indicating whether or not to compute
   the margin adjustment. This is strongly recommended for all levels of
   auxiliary information, and especially when auxiliary information is
