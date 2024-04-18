@@ -39,7 +39,7 @@ library(EHQLImpute)
 
 ## Simulating toy data
 
-We will start by simulating data with non-ignorable missingness from a Gaussian copula with arbitrary marginal distribution functions. We begin by simulating $(\boldsymbol Y,\boldsymbol R)$, and removing values  $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
+We will start by simulating data with non-ignorable missingness from a Gaussian copula with arbitrary marginal distribution functions. We begin by simulating $(\boldsymbol Y,\boldsymbol R)$, and removing values  $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
 
 
 ```{r}

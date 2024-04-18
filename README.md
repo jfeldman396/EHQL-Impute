@@ -36,7 +36,7 @@ library(EHQLImpute)
 We will start by simulating data with non-ignorable missingness from a
 Gaussian copula with arbitrary marginal distribution functions. We begin
 by simulating $(\boldsymbol Y,\boldsymbol R)$, and removing values
-$\boldsymbol Y_{ij}$ for $R_{ij}>0$.
+$\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
 
 ``` r
   library(LaplacesDemon)
@@ -60,7 +60,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.525 0.502 0.497 0.482 0.496
+#> [1] 0.526 0.474 0.499 0.484 0.511
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -98,26 +98,26 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
 #>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0012   Min.   :-1.096   Min.   :0.0984   Min.   :0.0008  
-#>  1st Qu.:0.2077   1st Qu.: 1.085   1st Qu.:0.3631   1st Qu.:0.3758  
-#>  Median :0.5419   Median : 1.990   Median :0.5060   Median :0.9214  
-#>  Mean   :0.7973   Mean   : 2.162   Mean   :0.5185   Mean   :1.2061  
-#>  3rd Qu.:1.1523   3rd Qu.: 2.900   3rd Qu.:0.6595   3rd Qu.:1.7398  
-#>  Max.   :5.2725   Max.   :11.535   Max.   :0.9552   Max.   :6.4679  
-#>  NA's   :525      NA's   :502      NA's   :497      NA's   :482     
-#>       Y_j                V6              V7              V8       
-#>  Min.   :-0.7458   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.6483   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 2.4540   Median :1.000   Median :1.000   Median :0.000  
-#>  Mean   : 2.6883   Mean   :0.525   Mean   :0.502   Mean   :0.497  
-#>  3rd Qu.: 3.3963   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   :12.9385   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :496                                                      
+#>  Min.   :0.0006   Min.   :-1.223   Min.   :0.0012   Min.   :0.0015  
+#>  1st Qu.:0.2968   1st Qu.: 1.188   1st Qu.:0.1256   1st Qu.:0.2109  
+#>  Median :0.7607   Median : 2.017   Median :0.3031   Median :0.5440  
+#>  Mean   :1.0266   Mean   : 2.359   Mean   :0.3349   Mean   :0.8449  
+#>  3rd Qu.:1.4246   3rd Qu.: 3.108   3rd Qu.:0.5109   3rd Qu.:1.1108  
+#>  Max.   :5.6446   Max.   :24.090   Max.   :0.9351   Max.   :6.1185  
+#>  NA's   :526      NA's   :474      NA's   :499      NA's   :484     
+#>       Y_j               V6              V7              V8       
+#>  Min.   :-1.609   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.061   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 1.747   Median :1.000   Median :0.000   Median :0.000  
+#>  Mean   : 1.917   Mean   :0.526   Mean   :0.474   Mean   :0.499  
+#>  3rd Qu.: 2.610   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   : 9.375   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :511                                                     
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :0.000   Median :0.000  
-#>  Mean   :0.482   Mean   :0.496  
+#>  Median :0.000   Median :1.000  
+#>  Mean   :0.484   Mean   :0.511  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
