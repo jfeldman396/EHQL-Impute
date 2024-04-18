@@ -41,7 +41,7 @@ library(EHQLImpute)
 
 We will start by simulating data with non-ignorable missingness from a Gaussian copula with arbitrary marginal distribution functions. We begin by simulating $(\boldsymbol Y,\boldsymbol R)$, and removing values  $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
 
-$=(0,\{\tau_{j}^{q}\}_{q=2}^{\ell_{j} - 1},...,1)$
+$=(0,\{\tau_{j}^{q}\}_{q=2}^{l_{j} - 1},...,1)$
 
 ```{r}
   library(LaplacesDemon)
