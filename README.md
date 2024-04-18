@@ -60,7 +60,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.491 0.511 0.489 0.491 0.522
+#> [1] 0.492 0.504 0.503 0.503 0.492
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -97,27 +97,27 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j               Y_j              Y_j        
-#>  Min.   :0.0012   Min.   :-0.0091   Min.   :0.0043   Min.   :0.0018  
-#>  1st Qu.:0.2756   1st Qu.: 1.6710   1st Qu.:0.2709   1st Qu.:0.3354  
-#>  Median :0.7006   Median : 2.4269   Median :0.4344   Median :0.7875  
-#>  Mean   :1.0143   Mean   : 2.7997   Mean   :0.4463   Mean   :1.0782  
-#>  3rd Qu.:1.4827   3rd Qu.: 3.4409   3rd Qu.:0.6058   3rd Qu.:1.5877  
-#>  Max.   :5.7798   Max.   :12.8502   Max.   :0.9719   Max.   :6.8695  
-#>  NA's   :491      NA's   :511       NA's   :489      NA's   :491     
+#>       Y_j              Y_j              Y_j              Y_j        
+#>  Min.   :0.0021   Min.   :-1.219   Min.   :0.0010   Min.   :0.0013  
+#>  1st Qu.:0.2199   1st Qu.: 1.158   1st Qu.:0.1503   1st Qu.:0.2453  
+#>  Median :0.5265   Median : 1.772   Median :0.3310   Median :0.6158  
+#>  Mean   :0.8295   Mean   : 2.004   Mean   :0.3550   Mean   :0.8586  
+#>  3rd Qu.:1.1520   3rd Qu.: 2.611   3rd Qu.:0.5165   3rd Qu.:1.1609  
+#>  Max.   :6.1069   Max.   :12.746   Max.   :0.9614   Max.   :6.5189  
+#>  NA's   :492      NA's   :504      NA's   :503      NA's   :503     
 #>       Y_j                V6              V7              V8       
-#>  Min.   :-0.4901   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.2925   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 1.9917   Median :0.000   Median :1.000   Median :0.000  
-#>  Mean   : 2.2578   Mean   :0.491   Mean   :0.511   Mean   :0.489  
-#>  3rd Qu.: 2.8812   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   :10.5146   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :522                                                      
+#>  Min.   :-0.4967   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.5075   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 2.2925   Median :0.000   Median :1.000   Median :1.000  
+#>  Mean   : 2.5336   Mean   :0.492   Mean   :0.504   Mean   :0.503  
+#>  3rd Qu.: 3.2222   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :10.8266   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :492                                                      
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :0.000   Median :1.000  
-#>  Mean   :0.491   Mean   :0.522  
+#>  Median :1.000   Median :0.000  
+#>  Mean   :0.503   Mean   :0.492  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -136,7 +136,7 @@ information specified by the user:
   this example we have $\texttt{ncolR} = 5$
 - **aux_quantiles**: auxiliary quantiles assumed known for each study
   variable. This is a list of length $\texttt{ncolY}$, where the
-  aux_quantiles\[\[j\]\]}
+  aux_quantiles\[\[j\]\]
   $= [0,\{\tau^{q}_{j}\}_{q=2}^{\ell_{j} - 1},...,1]$, i.e. there are
   $\ell_{j}+2$ auxiliary quantiles assumed known for each variable. Note
   that $\ell_{j}$, the number of auxiliary quantiles for each variable,
