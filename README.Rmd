@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The EHQL Gaussian copula is a powerful tool for imputing nonignorable missing data with arbitrary marginal distributions. In what follows we will walk you through a toy example
+The EHQL Gaussian copula is a powerful tool for imputing nonignorable missing data with arbitrary marginal distributions. The model provides the ability to incorporate **auxiliary quantiles** for each study variable based on subject matter expertise, published statistics, or a sensitivity analysis. The model leverages this information in model fitting, and imputes missing data using an estimator of each marginal based, in part, by these auxiliary quantiles. In what follows we will walk you through a toy example where we simulate data, fit the EHQL copula model and impute missing data. The function $\verb|EHQLImpute|$  accomplishes these tasks.
 
 ## Installation
 
@@ -105,18 +105,18 @@ We will start by simulating data with non-ignorable missingness from a Gaussian 
 
 Now we'll estimate the EHQL copula. To do so requires several pieces of information specified by the user:
 
-* $\texttt{YR}$: This is the combined observed study variables and missingness indicators. It is given by $\texttt{Yobs}$ above.
-* $\texttt{ncolY}$: The number of study variables. In this example we have $\texttt{ncolY} = 5$:
-* $\texttt{ncolR}$: The number of study variables modeled as non-ignorable.  In this example we have $\texttt{ncolR} = 5$
-* aux_quantiles: auxiliary quantiles assumed known for each study variable. This is a list of length $\texttt{ncolY}$, where the auxquantiles[[j]] =  $(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$, i.e. there are $q_{j}+2$ auxiliary quantiles assumed known for each variable. If $\texttt{aux_quantiles[[j]]}$ is null, empirical deciles will be used. Note the quantiles for each variable do not need to be unique.
-* aux_infos: This is a list of length $\texttt{ncolY}$ where aux_infos[[j]] =  $(F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},...,F_{j}^{-1}(1)\}$
-* $\texttt{MA}$: vector of length ncolY indicating whether or not to compute the margin adjustment. This is strongly recommended for all levels of auxiliary information, and especially when auxiliary information is extremely sparse, as it propagates uncertainty about each $F_{j}$ which is beneficial for prediction and imputation
-* $\texttt{nImps}$: The number of completed data sets to create
-* $\texttt{nsamp}$: Number of iterations for the MCMC
-* $\texttt{burn}$: Burn-in iterations for the MCMC
+* **YR**: This is the combined observed study variables and missingness indicators. It is given by $\texttt{Yobs}$ above.
+* **ncolY**: The number of study variables. In this example we have $\texttt{ncolY} = 5$:
+* **ncolR**: The number of study variables modeled as non-ignorable.  In this example we have $\texttt{ncolR} = 5$
+* **aux\_quantiles**: auxiliary quantiles assumed known for each study variable. This is a list of length $\texttt{ncolY}$, where the aux\_quantiles[[j]]} $=  [0,\{\tau^{q}_{j}\}_{q=2}^{\ell_{j} - 1},...,1]$, i.e. there are $\ell_{j}+2$ auxiliary quantiles assumed known for each variable. Note that $\ell_{j}$, the number of auxiliary quantiles for each variable, may be unique, while $\tau^{1}_{j} = 0$ and $\tau^{\ell_{j}} = 1$. aux\_quantiles[[j]] is null, empirical deciles will be used.
+* **aux\_infos**: This is a list of length $\texttt{ncolY}$ where aux\_infos[[j]] $=  \{F_{j}^{-1}(0),\{F_{j}^{-1}(\tau^{q}_{j})\}_{q=2}^{\ell_{j}},...,F_{j}^{-1}(1)\}$
+* **MA**: vector of length ncolY indicating whether or not to compute the margin adjustment. This is strongly recommended for all levels of auxiliary information, and especially when auxiliary information is extremely sparse, as it propagates uncertainty about each $F_{j}$ which is beneficial for prediction and imputation
+* **nImps**: The number of completed data sets to create
+* **nsamp**: Number of iterations for the MCMC
+* **burn**: Burn-in iterations for the MCMC
 
 
-```{r}
+```{r, cache=TRUE}
 YR = Y_obs
 ncolY = 5; ncolR = 5
 MA = rep(T,5)

@@ -7,8 +7,15 @@
 <!-- badges: end -->
 
 The EHQL Gaussian copula is a powerful tool for imputing nonignorable
-missing data with arbitrary marginal distributions. In what follows we
-will walk you through a toy example
+missing data with arbitrary marginal distributions. The model provides
+the ability to incorporate **auxiliary quantiles** for each study
+variable based on subject matter expertise, published statistics, or a
+sensitivity analysis. The model leverages this information in model
+fitting, and imputes missing data using an estimator of each marginal
+based, in part, by these auxiliary quantiles. In what follows we will
+walk you through a toy example where we simulate data, fit the EHQL
+copula model and impute missing data. The function $\verb|EHQLImpute|$
+accomplishes these tasks.
 
 ## Installation
 
@@ -53,7 +60,7 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.524 0.494 0.535 0.517 0.507
+#> [1] 0.491 0.511 0.489 0.491 0.522
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -91,26 +98,26 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
 #>       Y_j              Y_j               Y_j              Y_j        
-#>  Min.   :0.0001   Min.   :-0.7307   Min.   :0.0014   Min.   :0.0051  
-#>  1st Qu.:0.1904   1st Qu.: 1.4349   1st Qu.:0.2534   1st Qu.:0.3093  
-#>  Median :0.4680   Median : 2.1258   Median :0.4149   Median :0.7714  
-#>  Mean   :0.7183   Mean   : 2.4168   Mean   :0.4312   Mean   :1.0853  
-#>  3rd Qu.:1.0598   3rd Qu.: 3.1627   3rd Qu.:0.6005   3rd Qu.:1.5769  
-#>  Max.   :5.6446   Max.   : 8.4221   Max.   :0.9458   Max.   :5.6819  
-#>  NA's   :524      NA's   :494       NA's   :535      NA's   :517     
-#>       Y_j               V6              V7              V8       
-#>  Min.   :-1.243   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.048   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 1.747   Median :1.000   Median :0.000   Median :1.000  
-#>  Mean   : 1.889   Mean   :0.524   Mean   :0.494   Mean   :0.535  
-#>  3rd Qu.: 2.560   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   : 7.084   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :507                                                     
+#>  Min.   :0.0012   Min.   :-0.0091   Min.   :0.0043   Min.   :0.0018  
+#>  1st Qu.:0.2756   1st Qu.: 1.6710   1st Qu.:0.2709   1st Qu.:0.3354  
+#>  Median :0.7006   Median : 2.4269   Median :0.4344   Median :0.7875  
+#>  Mean   :1.0143   Mean   : 2.7997   Mean   :0.4463   Mean   :1.0782  
+#>  3rd Qu.:1.4827   3rd Qu.: 3.4409   3rd Qu.:0.6058   3rd Qu.:1.5877  
+#>  Max.   :5.7798   Max.   :12.8502   Max.   :0.9719   Max.   :6.8695  
+#>  NA's   :491      NA's   :511       NA's   :489      NA's   :491     
+#>       Y_j                V6              V7              V8       
+#>  Min.   :-0.4901   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.2925   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 1.9917   Median :0.000   Median :1.000   Median :0.000  
+#>  Mean   : 2.2578   Mean   :0.491   Mean   :0.511   Mean   :0.489  
+#>  3rd Qu.: 2.8812   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :10.5146   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :522                                                      
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :1.000   Median :1.000  
-#>  Mean   :0.517   Mean   :0.507  
+#>  Median :0.000   Median :1.000  
+#>  Mean   :0.491   Mean   :0.522  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -121,30 +128,31 @@ $\boldsymbol Y_{ij}$ for $R_{ij}>0$.
 Now we’ll estimate the EHQL copula. To do so requires several pieces of
 information specified by the user:
 
-- $\texttt{YR}$: This is the combined observed study variables and
-  missingness indicators. It is given by $\texttt{Yobs}$ above.
-- $\texttt{ncolY}$: The number of study variables. In this example we
-  have $\texttt{ncolY} = 5$:
-- $\texttt{ncolR}$: The number of study variables modeled as
-  non-ignorable. In this example we have $\texttt{ncolR} = 5$
-- aux_quantiles: auxiliary quantiles assumed known for each study
+- **YR**: This is the combined observed study variables and missingness
+  indicators. It is given by $\texttt{Yobs}$ above.
+- **ncolY**: The number of study variables. In this example we have
+  $\texttt{ncolY} = 5$:
+- **ncolR**: The number of study variables modeled as non-ignorable. In
+  this example we have $\texttt{ncolR} = 5$
+- **aux_quantiles**: auxiliary quantiles assumed known for each study
   variable. This is a list of length $\texttt{ncolY}$, where the
-  auxquantiles\[\[j\]\] = $(0,\{\tau_{k_{j}}\}_{k=1}^{q},...,1\}$,
-  i.e. there are $q_{j}+2$ auxiliary quantiles assumed known for each
-  variable. If $\texttt{aux_quantiles[[j]]}$ is null, empirical deciles
-  will be used. Note the quantiles for each variable do not need to be
-  unique.
-- aux_infos: This is a list of length $\texttt{ncolY}$ where
-  aux_infos\[\[j\]\] =
-  $(F_{j}^{-1}(0),\{F_{j}^{-1}(\tau_{k_{j}})\}_{k=1}^{q},...,F_{j}^{-1}(1)\}$
-- $\texttt{MA}$: vector of length ncolY indicating whether or not to
-  compute the margin adjustment. This is strongly recommended for all
-  levels of auxiliary information, and especially when auxiliary
-  information is extremely sparse, as it propagates uncertainty about
-  each $F_{j}$ which is beneficial for prediction and imputation
-- $\texttt{nImps}$: The number of completed data sets to create
-- $\texttt{nsamp}$: Number of iterations for the MCMC
-- $\texttt{burn}$: Burn-in iterations for the MCMC
+  aux_quantiles\[\[j\]\]}
+  $= [0,\{\tau^{q}_{j}\}_{q=2}^{\ell_{j} - 1},...,1]$, i.e. there are
+  $\ell_{j}+2$ auxiliary quantiles assumed known for each variable. Note
+  that $\ell_{j}$, the number of auxiliary quantiles for each variable,
+  may be unique, while $\tau^{1}_{j} = 0$ and $\tau^{\ell_{j}} = 1$.
+  aux_quantiles\[\[j\]\] is null, empirical deciles will be used.
+- **aux_infos**: This is a list of length $\texttt{ncolY}$ where
+  aux_infos\[\[j\]\]
+  $= \{F_{j}^{-1}(0),\{F_{j}^{-1}(\tau^{q}_{j})\}_{q=2}^{\ell_{j}},...,F_{j}^{-1}(1)\}$
+- **MA**: vector of length ncolY indicating whether or not to compute
+  the margin adjustment. This is strongly recommended for all levels of
+  auxiliary information, and especially when auxiliary information is
+  extremely sparse, as it propagates uncertainty about each $F_{j}$
+  which is beneficial for prediction and imputation
+- **nImps**: The number of completed data sets to create
+- **nsamp**: Number of iterations for the MCMC
+- **burn**: Burn-in iterations for the MCMC
 
 ``` r
 YR = Y_obs
@@ -187,20 +195,20 @@ Now, we can look at the imputations
 
 ``` r
 summary(imps$YImpute[[2]])
-#>       Y_j                Y_j               Y_j                Y_j         
-#>  Min.   :0.000064   Min.   :-0.7307   Min.   :-0.01336   Min.   :0.00189  
-#>  1st Qu.:0.254413   1st Qu.: 1.3588   1st Qu.: 0.10563   1st Qu.:0.25395  
-#>  Median :0.686923   Median : 2.1461   Median : 0.29950   Median :0.68230  
-#>  Mean   :1.029893   Mean   : 2.3823   Mean   : 0.32601   Mean   :1.03111  
-#>  3rd Qu.:1.438245   3rd Qu.: 3.1300   3rd Qu.: 0.50142   3rd Qu.:1.40615  
-#>  Max.   :6.194027   Max.   : 8.4221   Max.   : 0.94584   Max.   :6.14363  
-#>       Y_j        
-#>  Min.   :-1.243  
-#>  1st Qu.: 1.232  
-#>  Median : 2.065  
-#>  Mean   : 2.343  
-#>  3rd Qu.: 3.169  
-#>  Max.   : 7.702
+#>       Y_j                Y_j                Y_j                 Y_j          
+#>  Min.   :0.002831   Min.   :-0.01022   Min.   :-0.000099   Min.   :0.002214  
+#>  1st Qu.:0.295708   1st Qu.: 1.43534   1st Qu.: 0.132760   1st Qu.:0.299862  
+#>  Median :0.738075   Median : 2.16926   Median : 0.286881   Median :0.655321  
+#>  Mean   :1.082782   Mean   : 2.43558   Mean   : 0.328149   Mean   :1.065591  
+#>  3rd Qu.:1.559143   3rd Qu.: 3.01529   3rd Qu.: 0.486232   3rd Qu.:1.576546  
+#>  Max.   :5.177720   Max.   :14.33562   Max.   : 0.973536   Max.   :7.032586  
+#>       Y_j         
+#>  Min.   :-0.5853  
+#>  1st Qu.: 1.2763  
+#>  Median : 2.1431  
+#>  Mean   : 2.4003  
+#>  3rd Qu.: 3.2401  
+#>  Max.   :25.7541
 
 plot(density(imps$YImpute[[2]][,3], bw = .1),col = "blue", lwd = 3, main = "Imputed vs. Truth vs. Observed")
 lines(density(rbeta(1000,1,2),bw = .1),lwd = 3, lty = 2)
