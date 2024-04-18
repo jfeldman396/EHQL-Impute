@@ -38,6 +38,8 @@ Gaussian copula with arbitrary marginal distribution functions. We begin
 by simulating $(\boldsymbol Y,\boldsymbol R)$, and removing values
 $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
 
+$=(0,\{\tau_{j}^{q}\}_{q=2}^{\ell_{j} - 1},...,1)$
+
 ``` r
   library(LaplacesDemon)
   # simulate data generating copula correlation
@@ -60,7 +62,7 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.526 0.474 0.499 0.484 0.511
+#> [1] 0.497 0.508 0.472 0.481 0.504
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -97,27 +99,27 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0006   Min.   :-1.223   Min.   :0.0012   Min.   :0.0015  
-#>  1st Qu.:0.2968   1st Qu.: 1.188   1st Qu.:0.1256   1st Qu.:0.2109  
-#>  Median :0.7607   Median : 2.017   Median :0.3031   Median :0.5440  
-#>  Mean   :1.0266   Mean   : 2.359   Mean   :0.3349   Mean   :0.8449  
-#>  3rd Qu.:1.4246   3rd Qu.: 3.108   3rd Qu.:0.5109   3rd Qu.:1.1108  
-#>  Max.   :5.6446   Max.   :24.090   Max.   :0.9351   Max.   :6.1185  
-#>  NA's   :526      NA's   :474      NA's   :499      NA's   :484     
+#>       Y_j              Y_j               Y_j              Y_j        
+#>  Min.   :0.0382   Min.   :-1.2795   Min.   :0.0007   Min.   :0.0009  
+#>  1st Qu.:0.6599   1st Qu.: 0.8546   1st Qu.:0.0689   1st Qu.:0.2055  
+#>  Median :1.1834   Median : 1.4479   Median :0.1701   Median :0.5548  
+#>  Mean   :1.4952   Mean   : 1.5391   Mean   :0.2073   Mean   :0.8988  
+#>  3rd Qu.:2.0318   3rd Qu.: 2.1646   3rd Qu.:0.2939   3rd Qu.:1.2475  
+#>  Max.   :5.9906   Max.   : 4.8472   Max.   :0.8913   Max.   :5.6322  
+#>  NA's   :497      NA's   :508       NA's   :472      NA's   :481     
 #>       Y_j               V6              V7              V8       
-#>  Min.   :-1.609   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.061   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 1.747   Median :1.000   Median :0.000   Median :0.000  
-#>  Mean   : 1.917   Mean   :0.526   Mean   :0.474   Mean   :0.499  
-#>  3rd Qu.: 2.610   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   : 9.375   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :511                                                     
+#>  Min.   :-1.704   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.283   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 2.097   Median :0.000   Median :1.000   Median :0.000  
+#>  Mean   : 2.433   Mean   :0.497   Mean   :0.508   Mean   :0.472  
+#>  3rd Qu.: 3.205   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :15.213   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :504                                                     
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
 #>  Median :0.000   Median :1.000  
-#>  Mean   :0.484   Mean   :0.511  
+#>  Mean   :0.481   Mean   :0.504  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -137,7 +139,7 @@ information specified by the user:
 - **aux_quantiles**: auxiliary quantiles assumed known for each study
   variable. This is a list of length $\texttt{ncolY}$, where the
   aux_quantiles\[\[j\]\]
-  $= [0,\{\tau_{j}^{q}\}_{q=2}^{\ell_{j} - 1},...,1]$, i.e. there are
+  $=(0,\{\tau_{j}^{q}\}_{q=2}^{\ell_{j} - 1},...,1)$, i.e. there are
   $\ell_{j}+2$ auxiliary quantiles assumed known for each variable. Note
   that $\ell_{j}$, the number of auxiliary quantiles for each variable,
   may be unique, while $\tau^{1}_{j} = 0$ and $\tau^{\ell_{j}} = 1$.
