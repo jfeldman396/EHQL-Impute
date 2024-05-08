@@ -60,7 +60,7 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.487 0.504 0.525 0.505 0.492
+#> [1] 0.479 0.529 0.471 0.486 0.503
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -97,27 +97,27 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
       print("Summary of (Y^obs, R)")
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
-#>       Y_j              Y_j               Y_j              Y_j        
-#>  Min.   :0.0030   Min.   :-0.6888   Min.   :0.0033   Min.   :0.0042  
-#>  1st Qu.:0.3937   1st Qu.: 1.7189   1st Qu.:0.2037   1st Qu.:0.3279  
-#>  Median :0.8934   Median : 2.5635   Median :0.3636   Median :0.7683  
-#>  Mean   :1.1790   Mean   : 2.8517   Mean   :0.3915   Mean   :1.0575  
-#>  3rd Qu.:1.6424   3rd Qu.: 3.7048   3rd Qu.:0.5563   3rd Qu.:1.4489  
-#>  Max.   :6.9307   Max.   :13.4706   Max.   :0.9611   Max.   :5.8166  
-#>  NA's   :487      NA's   :504       NA's   :525      NA's   :505     
-#>       Y_j               V6              V7              V8       
-#>  Min.   :-2.102   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.479   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 2.265   Median :0.000   Median :1.000   Median :1.000  
-#>  Mean   : 2.489   Mean   :0.487   Mean   :0.504   Mean   :0.525  
-#>  3rd Qu.: 3.210   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   :11.575   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :492                                                     
+#>       Y_j              Y_j              Y_j              Y_j        
+#>  Min.   :0.0040   Min.   :-1.575   Min.   :0.0020   Min.   :0.0017  
+#>  1st Qu.:0.5033   1st Qu.: 1.124   1st Qu.:0.0963   1st Qu.:0.1629  
+#>  Median :1.0768   Median : 1.874   Median :0.2365   Median :0.3687  
+#>  Mean   :1.2896   Mean   : 2.081   Mean   :0.2767   Mean   :0.5022  
+#>  3rd Qu.:1.7228   3rd Qu.: 2.739   3rd Qu.:0.4127   3rd Qu.:0.7052  
+#>  Max.   :7.6350   Max.   : 9.672   Max.   :0.8656   Max.   :2.9194  
+#>  NA's   :479      NA's   :529      NA's   :471      NA's   :486     
+#>       Y_j                V6              V7              V8       
+#>  Min.   :-0.6108   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.6819   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 2.4778   Median :0.000   Median :1.000   Median :0.000  
+#>  Mean   : 2.8101   Mean   :0.479   Mean   :0.529   Mean   :0.471  
+#>  3rd Qu.: 3.4610   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :13.1100   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :503                                                      
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :1.000   Median :0.000  
-#>  Mean   :0.505   Mean   :0.492  
+#>  Median :0.000   Median :1.000  
+#>  Mean   :0.486   Mean   :0.503  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -136,15 +136,15 @@ information specified by the user:
   this example we have $\texttt{ncolR} = 5$
 - **aux_quantiles**: auxiliary quantiles assumed known for each study
   variable. This is a list of length $\texttt{ncolY}$, where the
-  aux_quantiles\[\[j\]\]
-  $$=[0,(\tau_{j}^{q})_{q=2}^{\ell_{j}-1},...,1]$$, i.e. there are
-  $\ell_{j}+2$ auxiliary quantiles assumed known for each variable. Note
-  that $\ell_{j}$, the number of auxiliary quantiles for each variable,
-  may be unique, while $\tau^{1}_{j} = 0$ and $\tau^{\ell_{j}} = 1$.
-  aux_quantiles\[\[j\]\] is null, empirical deciles will be used.
+  aux_quantiles\[\[j\]\] $=[0,(\tau_{j}^{q})_{q=2}^{\ell_{j}-1},...,1]$,
+  i.e. there are $\ell_{j}+2$ auxiliary quantiles assumed known for each
+  variable. Note that $\ell_{j}$, the number of auxiliary quantiles for
+  each variable, may be unique, while $\tau^{1}_{j} = 0$ and
+  $\tau^{\ell_{j}} = 1$. aux_quantiles\[\[j\]\] is null, empirical
+  deciles will be used.
 - **aux_infos**: This is a list of length $\texttt{ncolY}$ where
   aux_infos\[\[j\]\]
-  $$=  [F_{j}^{-1}(0),(F_{j}^{-1}(\tau_{j}^{q}))_{q=2}^{\ell_{j}-1},...,F_{j}^{-1}(1)]$$
+  $= [F_{j}^{-1}(0),(F_{j}^{-1}(\tau_{j}^{q}))_{q=2}^{\ell_{j}-1},...,F_{j}^{-1}(1)]$
 - **MA**: vector of length ncolY indicating whether or not to compute
   the margin adjustment. This is strongly recommended for all levels of
   auxiliary information, and especially when auxiliary information is
