@@ -110,8 +110,8 @@ Now we'll estimate the EHQL copula. To do so requires several pieces of informat
 * **YR**: This is the combined observed study variables and missingness indicators. It is given by $\texttt{Yobs}$ above.
 * **ncolY**: The number of study variables. In this example we have $\texttt{ncolY} = 5$:
 * **ncolR**: The number of study variables modeled as non-ignorable.  In this example we have $\texttt{ncolR} = 5$
-* **aux\_quantiles**: auxiliary quantiles assumed known for each study variable. This is a list of length $\texttt{ncolY}$, where the aux\_quantiles[[j]] $=[0,(\tau_{j}^{q})_{q=2}^{\ell_{j}-1},...,1]$, i.e. there are $\ell_{j}+2$ auxiliary quantiles assumed known for each variable. Note that $\ell_{j}$, the number of auxiliary quantiles for each variable, may be unique, while $\tau^{1}_{j} = 0$ and $\tau^{\ell_{j}} = 1$. aux\_quantiles[[j]] is null, empirical deciles will be used.
-* **aux\_infos**: This is a list of length $\texttt{ncolY}$ where aux\_infos[[j]] \[=  [F_{j}^{-1}(0),(F_{j}^{-1}(\tau_{j}^{q}))_{q=2}^{\ell_{j}-1},...,F_{j}^{-1}(1)]\]
+* **aux\_quantiles**: auxiliary quantiles assumed known for each study variable. This is a list of length $\texttt{ncolY}$, where the aux\_quantiles[[j]] $$=[0,(\tau_{j}^{q})_{q=2}^{\ell_{j}-1},...,1]$$, i.e. there are $\ell_{j}+2$ auxiliary quantiles assumed known for each variable. Note that $\ell_{j}$, the number of auxiliary quantiles for each variable, may be unique, while $\tau^{1}_{j} = 0$ and $\tau^{\ell_{j}} = 1$. aux\_quantiles[[j]] is null, empirical deciles will be used.
+* **aux\_infos**: This is a list of length $\texttt{ncolY}$ where aux\_infos[[j]] $$=  [F_{j}^{-1}(0),(F_{j}^{-1}(\tau_{j}^{q}))_{q=2}^{\ell_{j}-1},...,F_{j}^{-1}(1)]$$
 * **MA**: vector of length ncolY indicating whether or not to compute the margin adjustment. This is strongly recommended for all levels of auxiliary information, and especially when auxiliary information is extremely sparse, as it propagates uncertainty about each $F_{j}$ which is beneficial for prediction and imputation
 * **nImps**: The number of completed data sets to create
 * **nsamp**: Number of iterations for the MCMC
