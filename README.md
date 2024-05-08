@@ -60,7 +60,7 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.479 0.483 0.499 0.499 0.513
+#> [1] 0.504 0.509 0.508 0.494 0.497
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -98,26 +98,26 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
 #>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0003   Min.   :-1.029   Min.   :0.0013   Min.   :0.0003  
-#>  1st Qu.:0.1913   1st Qu.: 1.464   1st Qu.:0.1515   1st Qu.:0.1768  
-#>  Median :0.5199   Median : 2.266   Median :0.3006   Median :0.4458  
-#>  Mean   :0.6966   Mean   : 2.542   Mean   :0.3454   Mean   :0.6891  
-#>  3rd Qu.:0.9996   3rd Qu.: 3.325   3rd Qu.:0.5200   3rd Qu.:0.8694  
-#>  Max.   :4.1438   Max.   : 9.729   Max.   :0.9787   Max.   :5.0534  
-#>  NA's   :479      NA's   :483      NA's   :499      NA's   :499     
+#>  Min.   :0.0129   Min.   :-1.604   Min.   :0.0005   Min.   :0.0075  
+#>  1st Qu.:0.6175   1st Qu.: 1.670   1st Qu.:0.1046   1st Qu.:0.5288  
+#>  Median :1.2381   Median : 2.452   Median :0.2725   Median :1.1011  
+#>  Mean   :1.5228   Mean   : 2.643   Mean   :0.3119   Mean   :1.3541  
+#>  3rd Qu.:2.0150   3rd Qu.: 3.402   3rd Qu.:0.4874   3rd Qu.:1.9669  
+#>  Max.   :7.2014   Max.   :11.413   Max.   :0.9353   Max.   :6.3001  
+#>  NA's   :504      NA's   :509      NA's   :508      NA's   :494     
 #>       Y_j               V6              V7              V8       
-#>  Min.   :-1.042   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.085   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 1.787   Median :0.000   Median :0.000   Median :0.000  
-#>  Mean   : 1.939   Mean   :0.479   Mean   :0.483   Mean   :0.499  
-#>  3rd Qu.: 2.667   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   : 6.133   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :513                                                     
+#>  Min.   :-2.083   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#>  1st Qu.: 1.383   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+#>  Median : 2.158   Median :1.000   Median :1.000   Median :1.000  
+#>  Mean   : 2.389   Mean   :0.504   Mean   :0.509   Mean   :0.508  
+#>  3rd Qu.: 3.195   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
+#>  Max.   :10.411   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+#>  NA's   :497                                                     
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :0.000   Median :1.000  
-#>  Mean   :0.499   Mean   :0.513  
+#>  Median :0.000   Median :0.000  
+#>  Mean   :0.494   Mean   :0.497  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
@@ -150,7 +150,10 @@ information specified by the user:
   the margin adjustment. This is strongly recommended for all levels of
   auxiliary information, and especially when auxiliary information is
   extremely sparse, as it propagates uncertainty about each $F_{j}$
-  which is beneficial for prediction and imputation
+  which is beneficial for prediction and imputation. By default, the
+  function specifies a evenly spaced grid of 15 points across
+  $Y_{j}^{obs}$ and the model learns the intermediate quantiles of at
+  the occupied bins.
 - **nImps**: The number of completed data sets to create
 - **nsamp**: Number of iterations for the MCMC
 - **burn**: Burn-in iterations for the MCMC
@@ -222,6 +225,15 @@ legend("topright", c("Imputed", "Truth", "Observed"), col= c("blue", "black", "g
 We see that the imputations correct bias in the observed data.
 
 ### Analyze margin Adjustment
+
+The function also collects posterior samples of the intermediate
+quantile points specified when the margin adjustment (MA) is utilized.
+We can visualize these posterior samples and compare them to ground
+truth cumulative probabilities evaluated at each intermediate cutpoint
+which is done below. We see that the discrete approximation of each
+$F_{j}$ offered by the margin adjustment captures salient feature of
+each distribution function. These posterior samples are then smoothed
+and used for imputation.
 
 ``` r
 # 

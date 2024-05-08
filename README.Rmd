@@ -112,7 +112,7 @@ Now we'll estimate the EHQL copula. To do so requires several pieces of informat
 * **ncolR**: The number of study variables modeled as non-ignorable.  In this example we have $\texttt{ncolR} = 5$
 * **aux\_quantiles**: auxiliary quantiles assumed known for each study variable. This is a list of length $\texttt{ncolY}$, where the aux\_quantiles[[j]] $=[0,\tau_{j}^{2},\tau_{j}^{3},...,\tau_{j}^{\ell_{j} -1},1]$, i.e. there are $\ell_{j}$ auxiliary quantiles assumed known for each variable. Note that $\ell_{j}$, the number of auxiliary quantiles for each variable, may be unique, while $\tau_{j}^{1} = 0$ and $\tau_{j}^{\ell_{j}}= 1$. aux\_quantiles[[j]] is null, empirical deciles will be used.
 * **aux\_infos**: This is a list of length $\texttt{ncolY}$ where aux\_infos[[j]] $=  [F_{j}^{-1}(0),F_{j}^{-1}(\tau_{j}^{2}),F_{j}^{-1}(\tau_{j}^{3}),..., F_{j}^{-1}(\tau_{j}^{\ell_j -1}),F_{j}^{-1}(1)]$
-* **MA**: vector of length ncolY indicating whether or not to compute the margin adjustment. This is strongly recommended for all levels of auxiliary information, and especially when auxiliary information is extremely sparse, as it propagates uncertainty about each $F_{j}$ which is beneficial for prediction and imputation
+* **MA**: vector of length ncolY indicating whether or not to compute the margin adjustment. This is strongly recommended for all levels of auxiliary information, and especially when auxiliary information is extremely sparse, as it propagates uncertainty about each $F_{j}$ which is beneficial for prediction and imputation. By default, the function specifies a evenly spaced grid of 15 points across $Y_{j}^{obs}$ and the model learns the intermediate quantiles of at the occupied bins.
 * **nImps**: The number of completed data sets to create
 * **nsamp**: Number of iterations for the MCMC
 * **burn**: Burn-in iterations for the MCMC
@@ -165,6 +165,9 @@ We see that the imputations correct bias in the observed data.
 
 
 ### Analyze margin Adjustment
+
+The function also collects posterior samples of the intermediate quantile points specified when the margin adjustment (MA) is utilized. We can visualize these posterior samples and compare them to ground truth cumulative probabilities evaluated at each intermediate cutpoint which is done below. We see that the discrete approximation of each $F_{j}$ offered by the margin adjustment captures salient feature of each distribution function. These posterior samples are then smoothed and used for imputation.
+
 
 ```{r}
 # 
