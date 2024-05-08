@@ -27,7 +27,8 @@ EHQLImpute(
 
 \item{aux_infos}{List of length ncolY containing the known auxiliary values of the study variables. aux_infos[[j]] should be a vector containing \eqn{(F_j^{-1}(0),\dots,F_{j}^{-1}(\tau),\dots,F_{j}^{-1}(1))}. In addition aux_infos[[j]] should be the same length as aux_quantiles[[j]]}
 
-\item{MA}{Vector logicals of length ncolY indicating whether or not to estimate the margin adjustment at intermediate quantiles using the margin adjustment. Default is True for each study variable.}
+\item{MA}{Vector logicals of length ncolY indicating whether or not to estimate the margin adjustment at intermediate quantiles using the margin adjustment. Default is True for each study variable, which specifies an evenly spaced
+grid of 15 points across \eqn{Y_j^{obs}}, and learns the intermediate quantiles of these points during the EHQL Gibbs sampler. These posterior samples are then smoothed and used for imputation.}
 
 \item{nImps}{Number of completed data sets to produce}
 

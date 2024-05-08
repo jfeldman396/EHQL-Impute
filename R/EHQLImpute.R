@@ -9,7 +9,8 @@
 #' @param ncolR Number of study variables modeled as noningorable
 #' @param aux_quantiles List of length ncolY containing auxiliary quantiles assumed known for each study variable. aux_quantiles[[j]] should be a vector containg 0, intermediate quantiles, and 1.
 #' @param aux_infos List of length ncolY containing the known auxiliary values of the study variables. aux_infos[[j]] should be a vector containing \eqn{(F_j^{-1}(0),\dots,F_{j}^{-1}(\tau),\dots,F_{j}^{-1}(1))}. In addition aux_infos[[j]] should be the same length as aux_quantiles[[j]]
-#' @param MA Vector logicals of length ncolY indicating whether or not to estimate the margin adjustment at intermediate quantiles using the margin adjustment. Default is True for each study variable.
+#' @param MA Vector logicals of length ncolY indicating whether or not to estimate the margin adjustment at intermediate quantiles using the margin adjustment. Default is True for each study variable, which specifies an evenly spaced
+#' grid of 15 points across \eqn{Y_j^{obs}}, and learns the intermediate quantiles of these points during the EHQL Gibbs sampler. These posterior samples are then smoothed and used for imputation.
 #' @param nImps Number of completed data sets to produce
 #' @param nsamp Number of iterations for the MCMC
 #' @param burn Number of Burn-in samples for the MCMC
