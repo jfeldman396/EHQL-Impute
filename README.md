@@ -60,7 +60,7 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
   print("Missingness in Each Y_j:")
 #> [1] "Missingness in Each Y_j:"
   print(colMeans(R))
-#> [1] 0.484 0.493 0.505 0.495 0.507
+#> [1] 0.516 0.510 0.504 0.509 0.498
 
   # Now we'll create the study variables. Here we use gamma, t, and beta marginals 
   
@@ -98,26 +98,26 @@ $\boldsymbol Y_{ij}$ for $R^{2}_{ij}>0$.
 #> [1] "Summary of (Y^obs, R)"
       print(summary(Y_obs))
 #>       Y_j              Y_j              Y_j              Y_j        
-#>  Min.   :0.0016   Min.   :-1.223   Min.   :0.0036   Min.   :0.0001  
-#>  1st Qu.:0.2134   1st Qu.: 1.194   1st Qu.:0.1651   1st Qu.:0.1548  
-#>  Median :0.6951   Median : 2.007   Median :0.3404   Median :0.4226  
-#>  Mean   :0.9715   Mean   : 2.246   Mean   :0.3668   Mean   :0.6427  
-#>  3rd Qu.:1.3755   3rd Qu.: 2.923   3rd Qu.:0.5284   3rd Qu.:0.9509  
-#>  Max.   :5.5647   Max.   :18.334   Max.   :0.9743   Max.   :4.5512  
-#>  NA's   :484      NA's   :493      NA's   :505      NA's   :495     
-#>       Y_j               V6              V7              V8       
-#>  Min.   :-1.465   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#>  1st Qu.: 1.205   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
-#>  Median : 2.063   Median :0.000   Median :0.000   Median :1.000  
-#>  Mean   : 2.353   Mean   :0.484   Mean   :0.493   Mean   :0.505  
-#>  3rd Qu.: 3.108   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#>  Max.   :19.157   Max.   :1.000   Max.   :1.000   Max.   :1.000  
-#>  NA's   :507                                                     
+#>  Min.   :0.0046   Min.   :-1.440   Min.   :0.0031   Min.   :0.0020  
+#>  1st Qu.:0.3774   1st Qu.: 1.277   1st Qu.:0.1183   1st Qu.:0.2041  
+#>  Median :0.8455   Median : 1.964   Median :0.2644   Median :0.5150  
+#>  Mean   :1.1549   Mean   : 2.145   Mean   :0.3185   Mean   :0.7955  
+#>  3rd Qu.:1.5977   3rd Qu.: 2.812   3rd Qu.:0.4899   3rd Qu.:1.1315  
+#>  Max.   :7.6149   Max.   :10.129   Max.   :0.9517   Max.   :7.6132  
+#>  NA's   :516      NA's   :510      NA's   :504      NA's   :509     
+#>       Y_j               V6              V7             V8       
+#>  Min.   :-1.371   Min.   :0.000   Min.   :0.00   Min.   :0.000  
+#>  1st Qu.: 1.172   1st Qu.:0.000   1st Qu.:0.00   1st Qu.:0.000  
+#>  Median : 1.954   Median :1.000   Median :1.00   Median :1.000  
+#>  Mean   : 2.194   Mean   :0.516   Mean   :0.51   Mean   :0.504  
+#>  3rd Qu.: 2.872   3rd Qu.:1.000   3rd Qu.:1.00   3rd Qu.:1.000  
+#>  Max.   :12.758   Max.   :1.000   Max.   :1.00   Max.   :1.000  
+#>  NA's   :498                                                    
 #>        V9             V10       
 #>  Min.   :0.000   Min.   :0.000  
 #>  1st Qu.:0.000   1st Qu.:0.000  
-#>  Median :0.000   Median :1.000  
-#>  Mean   :0.495   Mean   :0.507  
+#>  Median :1.000   Median :0.000  
+#>  Mean   :0.509   Mean   :0.498  
 #>  3rd Qu.:1.000   3rd Qu.:1.000  
 #>  Max.   :1.000   Max.   :1.000  
 #> 
